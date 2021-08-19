@@ -5,32 +5,42 @@ import correr.strategyCorrer;
 import pular.strategyPular;
 
 /**
- * Fiz o código com o IonUpdate, para que o jogo funcionasse com qualquer
- * personagem podendo ser inimigo, e não precisasse de um personagem principal.
- * Assim qualquer personagem pode ser inimigo de qualquer outro personagem. O
- * problema, é que ao instanciar o personagem principal, deve-se passar uma
- * strategie do tipo IonUpdate, que não faça nada. Todo personagem, portanto, é
- * um potencial observador.
- * 
- * @author Guilherme R. Rodovalho
+ * Classe personagem atualmente controla o personagem principal, seus diversos
+ * estados e suas strategies. No momento só tem um personagem principal
  */
+public class Personagem {
 
-public class Personagem implements IObservador {
-
-  private EstadoPersonagem state;
   private String nome;
+  private EstadoPersonagem state;
 
   private strategyPular habilidadePular;
   private strategyAtacar habilidadeAtacar;
   private strategyCorrer habilidaCorrer;
 
-  private IonUpdate onUpdate;
-
-  private ArrayList<Personagem> inimigos = new ArrayList<Personagem>();
+  private ArrayList<Inimigo> inimigos = new ArrayList<Inimigo>();
 
   private double life;
   private int x;
   private int y;
+
+  /**
+   * É passado para o construtor a posição inicial do personagem como as variáveis
+   * x e y, e o nome.
+   * 
+   * @param x    Coordenada x
+   * @param y    Coordenada y
+   * @param nome Nome do personagem a ser criado
+   */
+  public Personagem(int x, int y, String nome) {
+    state = new PersonagemNormal(this);
+
+    this.setX(x);
+    this.setY(y);
+
+    this.setLife(70);
+
+    this.nome = nome;
+  }
 
   public int getX() {
     return x;
@@ -48,33 +58,27 @@ public class Personagem implements IObservador {
     this.y = y;
   }
 
-  public Personagem(int x, int y, String nome, IonUpdate comportamento) {
-    state = new PersonagemNormal(this);
-
-    this.setX(x);
-    this.setY(y);
-
-    this.setLife(70);
-
-    this.onUpdate = comportamento;
-    this.nome = nome;
+  public String getNome() {
+    return this.nome;
   }
 
+  // Parte do padrão observer, serve para que os inimigos saibam o que acontece
+  // com o personagem
   public void notificarInimigos() {
-    for (Personagem p : inimigos) {
+    for (Inimigo p : inimigos) {
       p.update(this);
     }
   }
 
-  public ArrayList<Personagem> getInimigos() {
+  public ArrayList<Inimigo> getInimigos() {
     return inimigos;
   }
 
-  public void setInimigos(ArrayList<Personagem> inimigos) {
+  public void setInimigos(ArrayList<Inimigo> inimigos) {
     this.inimigos = inimigos;
   }
 
-  public void setInimigos(Personagem inimigo) {
+  public void setInimigos(Inimigo inimigo) {
     this.inimigos.add(inimigo);
   }
 
@@ -84,6 +88,8 @@ public class Personagem implements IObservador {
 
   public void setLife(double life) {
     this.life = life;
+
+    this.state.verificaEstado();
   }
 
   public void sofreAtaque(double dano) {
@@ -102,10 +108,26 @@ public class Personagem implements IObservador {
     this.state.verificaEstado();
   }
 
-  public void atacar() {
-    habilidadeAtacar.atacar();
+  /**
+   * Ataca o inimigo passado usando a strategie habilidadeAtacar. Haverá mudanças,
+   * caso eu refatore inimigo para personagem comum.
+   * 
+   * @param alvo Alvo que está sendo atacado
+   */
+  public void atacar(Inimigo alvo) {
+
+    System.out.println("O personagem " + this.nome + " atacou o " + alvo.getNome());
+
+    alvo.sofreAtaque(this.habilidadeAtacar.atacar());
   }
 
+  /**
+   * Corre em apenas em um eixo por vez. Posso tentar fazer algum cálculo
+   * trigonométrico para o personagem correr na diagonal. Só não sei como ainda.
+   * 
+   * @param eixo     Eixo de coordenadas que está sendo movido
+   * @param positivo Se o personagem deve correr no valor positivo ou negativo
+   */
   public void correr(String eixo, boolean positivo) {
     int distancia = habilidaCorrer.correr();
 
@@ -146,11 +168,6 @@ public class Personagem implements IObservador {
 
   public void setHabilidaCorrer(strategyCorrer habilidaCorrer) {
     this.habilidaCorrer = habilidaCorrer;
-  }
-
-  @Override
-  public void update(Personagem p) {
-    this.onUpdate.executar(this, p);
   }
 
 }

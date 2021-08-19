@@ -1,6 +1,12 @@
 import atacar.atacarForte;
 import correr.correrRapido;
 
+/**
+ * Estado do personagem forte, onte ele corre rápido e ataca forte. O personagem
+ * está nesse estado quando está acima de 70 de vida
+ * 
+ * @see EstadoPersonagem
+ */
 public class PersonagemForte extends EstadoPersonagem {
 
   public PersonagemForte(Personagem personagem) {

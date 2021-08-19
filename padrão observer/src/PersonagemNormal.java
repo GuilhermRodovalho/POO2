@@ -2,8 +2,14 @@ import atacar.atacarMedio;
 import correr.correrMedio;
 import pular.pularMedio;
 
+/**
+ * Estado do personagem Normal, onte ele corre medio, ataca medio e pula medio.
+ * O personagem está nesse estado quando é instanciado e quando está entre 30 e
+ * 70 de vida
+ * 
+ * @see EstadoPersonagem
+ */
 public class PersonagemNormal extends EstadoPersonagem {
-
   public PersonagemNormal(Personagem personagem) {
     super(personagem);
     personagem.setHabilidaCorrer(new correrMedio());

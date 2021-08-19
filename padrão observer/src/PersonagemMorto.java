@@ -13,7 +13,5 @@ public class PersonagemMorto extends EstadoPersonagem {
   public void recuperarVida(double vida) {
     System.out.println("Impossível recuperar vida, o personagem está morto");
     System.out.println("RIP");
-
-    this.verificaEstado();
   }
 }
