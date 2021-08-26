@@ -10,8 +10,6 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import escudo.EscudoForte;
-
 /**
  * Essa classe cria e administra o jogo até o fim, com os personagens passados
  * pra ela.
