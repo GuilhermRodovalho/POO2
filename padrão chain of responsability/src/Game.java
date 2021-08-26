@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import escudo.EscudoForte;
+
 /**
  * Essa classe cria e administra o jogo até o fim, com os personagens passados
  * pra ela.
@@ -123,7 +125,7 @@ public class Game extends JPanel {
 
     if (inimigos.size() == 0) {
       g2d.setColor(Color.RED);
-      g2d.drawString("Você venceu!", 100, 100);
+      g2d.drawString("Você venceu!", frame.getWidth() / 2 - 50, frame.getHeight() / 2);
     }
 
     for (Inimigo p : inimigos) {

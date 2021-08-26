@@ -13,7 +13,11 @@ public class EscudoFraco extends Escudo {
       double aux = dano * 0.3; // Remove 30% do dano
       aux = (dano - aux) / 2; // Pega metade do restante
 
-      this.setVidaEscudo(this.getVidaEscudo() - aux);
+      if (this.getVidaEscudo() - aux < 1) {
+        this.setVidaEscudo(0);
+      } else {
+        this.setVidaEscudo(this.getVidaEscudo() - aux);
+      }
 
       // Caso tenha mais algum escudo na cadeia, passa o resto pra ele
       // caso não tenha, já retorna o valor pra função principal
@@ -23,6 +27,8 @@ public class EscudoFraco extends Escudo {
         return aux;
       }
 
+    } else if (this.getProximoEscudo() != null) {
+      return this.getProximoEscudo().sofrerDano(dano);
     } else {
       return dano;
     }

@@ -1,3 +1,8 @@
+## To dos:
+- Add visual do escudo
+- Fazer uma estratégia para o usuário pegar os escudos
+- Testar porque quando tem mais um escudo forte empilhado ele demora pra sofrer dano quando o escudo quebra
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.

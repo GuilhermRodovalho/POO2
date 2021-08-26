@@ -26,11 +26,11 @@ public abstract class EstadoPersonagem {
 
     // personagem.setLife(personagem.getLife() - dano);
 
-    double value = personagem.getEscudos().sofrerDano(dano);
+    double notMitigatedDamage = personagem.getEscudos().sofrerDano(dano);
 
     // A nova vida, é a vida antiga menos o dano que não pode ser mitigado pelo
     // escudo
-    this.personagem.setLife(this.personagem.getLife() - value);
+    this.personagem.setLife(this.personagem.getLife() - notMitigatedDamage);
 
   }
 
