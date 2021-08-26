@@ -118,6 +118,8 @@ public class Game extends JPanel {
     g2d.drawString("Inimigos vivos: " + this.inimigos.size(), 300, 25);
     g2d.setColor(Color.RED);
     g2d.drawString("Vida: " + this.personagemP.getLife(), 70, 20);
+    g2d.setColor(Color.RED);
+    g2d.drawString("Escudo: " + this.personagemP.getLifeEscudos(), 70, 40);
 
     if (inimigos.size() == 0) {
       g2d.setColor(Color.RED);

@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 import atacar.strategyAtacar;
 import correr.strategyCorrer;
+import escudo.Escudo;
+import escudo.EscudoForte;
 import pular.strategyPular;
 
 /**
@@ -20,6 +22,7 @@ public class Personagem {
   private ArrayList<Inimigo> inimigos = new ArrayList<Inimigo>();
 
   private double life;
+  private Escudo escudos;
   private int x;
   private int y;
 
@@ -36,6 +39,8 @@ public class Personagem {
 
     this.setX(x);
     this.setY(y);
+    this.setEscudos(new EscudoForte());
+    this.getLifeEscudos();
 
     this.setLife(70);
 
@@ -60,6 +65,43 @@ public class Personagem {
 
   public String getNome() {
     return this.nome;
+  }
+
+  // Coloca o escudo no topo da pilha de escudos
+  // ou seja: faz ele apontar para os escudos que eu já tenho.
+  // Mais eficiente que percorrer todos os escudos, e colocar no final.
+  // Mas existe a possibilidade de alterar
+  public void addEscudo(Escudo escudo) {
+    escudo.setProximoEscudo(this.escudos);
+
+    this.setEscudos(escudo);
+  }
+
+  public double getLifeEscudos() {
+    if (this.getEscudos() != null) {
+      double aux = this.getEscudos().getVidaEscudo();
+
+      Escudo auxescudo = this.getEscudos();
+      while (auxescudo.getProximoEscudo() != null) {
+        aux += auxescudo.getVidaEscudo();
+        auxescudo = auxescudo.getProximoEscudo();
+      }
+
+      // this.lifeEscudos = aux;
+
+      return aux;
+    }
+
+    return 0;
+
+  }
+
+  public Escudo getEscudos() {
+    return escudos;
+  }
+
+  public void setEscudos(Escudo escudo) {
+    this.escudos = escudo;
   }
 
   // Parte do padrão observer, serve para que os inimigos saibam o que acontece
@@ -94,6 +136,8 @@ public class Personagem {
 
   public void sofreAtaque(double dano) {
     this.state.levarDano(dano);
+
+    this.getLifeEscudos();
   }
 
   public void ganharRecompensa(double recompensa) {

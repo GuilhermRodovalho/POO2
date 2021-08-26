@@ -24,7 +24,14 @@ public abstract class EstadoPersonagem {
 
     System.out.printf("O personagem " + this.personagem.getNome() + " sofre %.0f de dano\n", dano);
 
-    personagem.setLife(personagem.getLife() - dano);
+    // personagem.setLife(personagem.getLife() - dano);
+
+    double value = personagem.getEscudos().sofrerDano(dano);
+
+    // A nova vida, é a vida antiga menos o dano que não pode ser mitigado pelo
+    // escudo
+    this.personagem.setLife(this.personagem.getLife() - value);
+
   }
 
   /**
@@ -37,7 +44,7 @@ public abstract class EstadoPersonagem {
    */
   public void recuperarVida(double vida) {
 
-    System.out.printf("O personagem" + this.personagem.getNome() + "recuperou %.0f de vida\n", vida);
+    System.out.printf("O personagem" + this.personagem.getNome() + " recuperou %.0f de vida\n", vida);
 
     personagem.setLife(personagem.getLife() + vida);
     this.verificaEstado();
