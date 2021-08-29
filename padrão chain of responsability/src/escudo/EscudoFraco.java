@@ -16,7 +16,7 @@ public class EscudoFraco extends Escudo {
       if (this.getVidaEscudo() - aux < 1) {
         this.setVidaEscudo(0);
       } else {
-        this.setVidaEscudo(this.getVidaEscudo() - aux);
+        this.setVidaEscudo((int) (this.getVidaEscudo() - aux));
       }
 
       // Caso tenha mais algum escudo na cadeia, passa o resto pra ele

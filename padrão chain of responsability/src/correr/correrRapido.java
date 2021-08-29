@@ -2,6 +2,6 @@ package correr;
 
 public class correrRapido implements strategyCorrer {
   public int correr() {
-    return 15;
+    return 8;
   }
 }

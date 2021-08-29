@@ -2,16 +2,16 @@ package escudo;
 
 /**
  * como meu escudo vai funcionar: O usuário pode pegar vários escudos: O escudo
- * medio mitiga 60% do dano, o resto será passado metade para a vida do escudo,
+ * medio mitiga 50% do dano, o resto será passado metade para a vida do escudo,
  * e metade para o próximo escudo na cadeia. O escudo forte mitiga 80% do dano.
- * E o escudo fraco mitiga 40% do dano.
+ * E o escudo fraco mitiga 30% do dano.
  * 
  * O sistema funcionará da seguinte forma: Quando o personagem passar por cima
  * de um escudo, o mesmo irá para o final da cadeia de escudos.
  */
 public abstract class Escudo {
 
-  private double vidaEscudo;
+  private int vidaEscudo;
   private Escudo proximoEscudo;
 
   public Escudo() {
@@ -30,11 +30,11 @@ public abstract class Escudo {
    */
   public abstract double sofrerDano(double dano);
 
-  public double getVidaEscudo() {
+  public int getVidaEscudo() {
     return vidaEscudo;
   }
 
-  public void setVidaEscudo(double vidaEscudo) {
+  public void setVidaEscudo(int vidaEscudo) {
     this.vidaEscudo = vidaEscudo;
   }
 

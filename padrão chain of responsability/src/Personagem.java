@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import atacar.strategyAtacar;
 import correr.strategyCorrer;
 import escudo.Escudo;
-import escudo.EscudoForte;
+import escudo.EscudoFraco;
 import pular.strategyPular;
 
 /**
@@ -39,7 +39,7 @@ public class Personagem {
 
     this.setX(x);
     this.setY(y);
-    this.setEscudos(new EscudoForte());
+    this.setEscudos(new EscudoFraco());
     this.getLifeEscudos();
 
     this.setLife(70);

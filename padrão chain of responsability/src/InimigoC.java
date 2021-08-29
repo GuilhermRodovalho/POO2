@@ -8,7 +8,7 @@ public class InimigoC extends Inimigo {
   public InimigoC(int x, int y, String nome) {
     super(x, y, nome);
 
-    this.setHabilidaCorrer(3);
+    this.setHabilidaCorrer(2);
     this.setHabilidadeAtacar(10);
   }
 }

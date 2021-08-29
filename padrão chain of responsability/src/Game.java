@@ -166,7 +166,7 @@ public class Game extends JPanel {
     while (true && !this.fimdejogo) {
       personagemP.notificarInimigos();
       game.repaint();
-      Thread.sleep(70);
+      Thread.sleep(50);
     }
 
   }

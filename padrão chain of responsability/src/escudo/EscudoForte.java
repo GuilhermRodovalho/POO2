@@ -13,30 +13,30 @@ public class EscudoForte extends Escudo {
   @Override
   public double sofrerDano(double dano) {
     if (this.getVidaEscudo() > 0) {
-      double aux = dano * 0.8; // Remove 80% do dano
+      double aux = dano * 0.8;
       aux = dano - aux;
 
-      if (this.getVidaEscudo() - aux > 0) {
-        this.setVidaEscudo(this.getVidaEscudo() - aux);
+      if (this.getVidaEscudo() >= aux) {
+        this.setVidaEscudo((int) (this.getVidaEscudo() - aux));
         return 0;
       } else {
-        // se o dano for maior que o escudo, você fica sem escudo e o excedente vai pra
-        // vida do personagem
         aux = aux - this.getVidaEscudo();
         this.setVidaEscudo(0);
 
-        // Se ainda tiver mais escudos, eles vão lidar com o dano;
         if (this.getProximoEscudo() != null) {
           return this.getProximoEscudo().sofrerDano(aux);
+        } else {
+          return aux;
         }
-
-        return aux;
       }
 
-    } else if (this.getProximoEscudo() != null) {
-      return this.getProximoEscudo().sofrerDano(dano);
     } else {
-      return dano;
+
+      if (this.getProximoEscudo() != null) {
+        return this.getProximoEscudo().sofrerDano(dano);
+      } else {
+        return dano;
+      }
     }
   }
 
