@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import atacar.poderMaldicao;
 import atacar.strategyAtacar;
 import correr.strategyCorrer;
 import escudo.Escudo;
@@ -146,6 +147,8 @@ public class Personagem {
 
   public void changeState(EstadoPersonagem state) {
     this.state = state;
+
+    this.habilidadeAtacar = new poderMaldicao(this.habilidadeAtacar);
   }
 
   public void verificaEstado() {

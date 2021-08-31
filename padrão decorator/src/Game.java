@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,6 +12,8 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import escudo.EscudoMedio;
+
 /**
  * Essa classe cria e administra o jogo até o fim, com os personagens passados
  * pra ela.
@@ -17,6 +21,8 @@ import javax.swing.JPanel;
 public class Game extends JPanel {
   private Personagem personagemP;
   private ArrayList<Inimigo> inimigos = new ArrayList<Inimigo>();
+  private Set<Coordenada> escudosNoMapa = new HashSet<Coordenada>();
+
   private boolean fimdejogo = false;
 
   private JFrame frame;
@@ -30,6 +36,10 @@ public class Game extends JPanel {
   public Game(Personagem personagemP, ArrayList<Inimigo> inimigos) {
     this.personagemP = personagemP;
     this.inimigos = inimigos;
+
+    this.escudosNoMapa.add(new Coordenada(100, 500));
+    this.escudosNoMapa.add(new Coordenada(300, 400));
+    this.escudosNoMapa.add(new Coordenada(500, 350));
 
     KeyListener listener = new MyKeyListener();
     addKeyListener(listener);
@@ -80,6 +90,16 @@ public class Game extends JPanel {
           }
 
         }
+
+        for (Coordenada coord : escudosNoMapa) {
+
+          if (Math.abs(personagemP.getX() - coord.x) < 7 && Math.abs(personagemP.getY() - coord.y) < 7) {
+
+            personagemP.addEscudo(new EscudoMedio());
+            escudosNoMapa.remove(coord);
+          }
+        }
+
       }
 
     }
@@ -146,6 +166,11 @@ public class Game extends JPanel {
         }
 
       }
+    }
+
+    for (Coordenada coord : escudosNoMapa) {
+      g2d.setColor(Color.DARK_GRAY);
+      g2d.fillOval(coord.x, coord.y, 10, 20);
     }
 
   }

@@ -57,6 +57,7 @@ public class Inimigo implements IObservador {
   }
 
   public void sofreAtaque(double dano) {
+    System.out.println("O inimigo recebeu " + dano + " de dano");
     this.life = this.life - dano;
   }
 
