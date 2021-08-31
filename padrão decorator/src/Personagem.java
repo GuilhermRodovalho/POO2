@@ -148,6 +148,7 @@ public class Personagem {
   public void changeState(EstadoPersonagem state) {
     this.state = state;
 
+    // Essa linha está aqui para provar o padrão decorator
     this.habilidadeAtacar = new poderMaldicao(this.habilidadeAtacar);
   }
 
