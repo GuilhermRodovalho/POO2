@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class Principal {
   public static void main(String[] args) throws InterruptedException {
 
-    Personagem personagemP = new Personagem(200, 500, "Principal");
+    Factory fabricaDePersonagem = advancedFactory.getInstance(); // Pode ser trocada para outra fábrica em tempo de
+                                                                 // execução
+    Personagem personagemP = fabricaDePersonagem.criar();
     // personagemP.changeState(new PersonagemForte(personagemP));
-    personagemP.setLife(80);
+    // personagemP.setLife(80);
 
     ArrayList<Inimigo> inimigos = new ArrayList<Inimigo>();
     inimigos.add(new InimigoA(400, 700, "bot1"));
