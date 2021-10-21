@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=AbstractFactory
-comment1.params=
-comment1.target=AbstractPersonagem\ criarPersonagem()
-comment2.params=
-comment2.target=Arma\ criarArma()
-comment3.params=
-comment3.target=Defesa\ criarDefesa()
-numComments=4
