@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=FactoryMedieval
+comment1.params=
+comment1.target=FactoryMedieval()
+comment2.params=
+comment2.target=FactoryMedieval\ getInstance()
+comment3.params=
+comment3.target=AbstractPersonagem\ criarPersonagem()
+comment4.params=
+comment4.target=Arma\ criarArma()
+comment5.params=
+comment5.target=Defesa\ criarDefesa()
+numComments=6
